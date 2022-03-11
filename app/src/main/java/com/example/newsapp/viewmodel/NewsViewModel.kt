@@ -1,4 +1,4 @@
-package com.example.newsapp.usecases.viewmodel
+package com.example.newsapp.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -17,13 +17,13 @@ class NewsViewModel : ViewModel() {
 
 
     init {
-        reset()
+        refresh()
     }
 
     /**
      * Resend a request to get the list of articles
      */
-    fun reset() {
+    fun refresh() {
         GlobalScope.launch(Dispatchers.IO) {
             try {
                 val response = ApiClient.apiService.getTopHeadlines("us", API_KEY)

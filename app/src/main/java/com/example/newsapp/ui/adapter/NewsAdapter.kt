@@ -7,6 +7,9 @@ import com.example.newsapp.data.model.News
 import com.example.newsapp.databinding.NewsAdapterBinding
 import com.squareup.picasso.Picasso
 
+/**
+ * Adapter to display a list of News in a RecyclerView
+ */
 class NewsAdapter : RecyclerView.Adapter<MainViewHolder>() {
 
     var newsList = mutableListOf<News>()

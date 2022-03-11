@@ -21,7 +21,6 @@
         android:layout_gravity="bottom"
         android:background="#D3FFFFFF"
         android:gravity="center_vertical"
-        android:lines="1"
         android:padding="8dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Title"
         android:textStyle="bold"
@@ -45,9 +44,9 @@
         android:layout_gravity="bottom"
         android:background="#D3FFFFFF"
         android:gravity="center_vertical"
-        android:text="@string/read_more_txt"
         android:onClick="onClick"
         android:padding="8dp"
+        android:text="@string/read_more_txt"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
         android:textColor="#1E90FF"
         tools:text="@tools:sample/full_names" />

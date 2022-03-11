@@ -11,7 +11,9 @@ import androidx.navigation.fragment.navArgs
 import com.example.newsapp.databinding.FragmentDetailBinding
 import com.squareup.picasso.Picasso
 
-
+/**
+ * Show the details of a News
+ */
 class DetailFragment : Fragment() {
 
     private val args: DetailFragmentArgs by navArgs()
@@ -21,7 +23,7 @@ class DetailFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentDetailBinding.inflate(inflater, container, false)
         args.news.run {
             Picasso.get().load(urlToImage).into(binding.imageview)

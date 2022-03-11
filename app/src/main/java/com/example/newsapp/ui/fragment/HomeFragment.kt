@@ -12,10 +12,16 @@ import com.example.newsapp.data.model.News
 import com.example.newsapp.databinding.FragmentHomeBinding
 import com.example.newsapp.ui.adapter.NewsAdapter
 import com.example.newsapp.ui.adapter.RecyclerItemClickListener
-import com.example.newsapp.usecases.viewmodel.NewsViewModel
+import com.example.newsapp.viewmodel.NewsViewModel
 
-
-class Home : Fragment() {
+/**
+ * It's the list of articles catch from the internet
+ * When the list of news is empty it show a loading spinner
+ * When the list of news is loaded it display them
+ * When an error occurr while it download the the list it show a toast with
+ * the content of the error messgae
+ */
+class HomeFragment : Fragment() {
     val viewModel: NewsViewModel by viewModels()
     private val adapter = NewsAdapter()
     private var _binding: FragmentHomeBinding? = null
@@ -28,20 +34,31 @@ class Home : Fragment() {
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val view = binding.root
-        binding.recyclerview.adapter = adapter
 
+        binding.recyclerview.adapter = adapter
+        binding.refreshBtn.hide()
+        binding.refreshBtn.setOnClickListener {
+            viewModel.refresh(); binding.refreshBtn.hide();
+        }
         viewModel.news.observe(this) { news ->
+
+
             if (news?.isNotEmpty() == true) {
                 binding.progressDialog.visibility = View.INVISIBLE
                 adapter.setNews(news as List<News>)
+                binding.refreshBtn.show()
+
             } else {
                 binding.progressDialog.visibility = View.VISIBLE
+                binding.refreshBtn.show()
             }
         }
+
         viewModel.errors.observe(this) {
             val toast = Toast.makeText(this.context, it, Toast.LENGTH_LONG)
             toast.show()
         }
+
         binding.recyclerview.addOnItemTouchListener(
             RecyclerItemClickListener(
                 context,
@@ -49,7 +66,7 @@ class Home : Fragment() {
                 object : RecyclerItemClickListener.OnItemClickListener {
                     override fun onItemClick(view: View?, position: Int) {
                         val action =
-                            HomeDirections.actionHome2ToDetailFragment(
+                            HomeFragmentDirections.actionHome2ToDetailFragment(
                                 viewModel.news.value!![position]!!
                             )
 

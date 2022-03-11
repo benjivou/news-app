@@ -8,7 +8,9 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-
+/**
+ * This is the Singleton that store the Retrofit Client and the logger
+ */
 object ApiClient {
     private const val BASE_URL: String = "https://newsapi.org/v2/"
 
@@ -26,7 +28,6 @@ object ApiClient {
     }
 
     private val retrofit: Retrofit by lazy {
-
 
         Retrofit.Builder()
             .baseUrl(BASE_URL)

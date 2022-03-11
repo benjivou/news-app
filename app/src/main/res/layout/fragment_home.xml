@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragment.Home">
+    tools:context=".ui.fragment.HomeFragment">
+
+
 
     <ProgressBar
         android:id="@+id/progressDialog"
@@ -27,5 +29,17 @@
         app:spanCount="1"
         tools:itemCount="2"
         tools:listitem="@layout/news_adapter" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/refresh_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_baseline_refresh_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:contentDescription="@string/refresh_txt" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
